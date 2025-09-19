@@ -1,0 +1,589 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>엔트리 질문 채널 안내 | 쉽게 물어보세요</title>
+    <meta name="description" content="엔트리 질문을 빠르게 해결하는 안내입니다. 간단한 질문은 카카오톡, 자세한 질문은 밴드에 글로 올려 주세요. 잡담은 디스코드/카톡에서!" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="theme-color" content="#32D27D">
+
+    <!-- Canonical (📌 배포 시 실제 도메인으로 교체) -->
+    <link rel="canonical" href="https://help.205.kr/" />
+
+    <!-- Open Graph / Twitter (📌 og:image는 실제 이미지 주소로 교체) -->
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="엔트리 질문 채널 안내 | 쉽게 물어보세요" />
+    <meta property="og:description" content="엔트리 질문을 빠르게 해결하는 안내. 간단한 질문은 카카오톡, 자세한 질문은 밴드에 글로 올려 주세요. 잡담은 디스코드/카톡에서!" />
+    <meta property="og:url" content="https://help.205.kr/" />
+    <meta property="og:site_name" content="엔트리 질문 채널" />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Entry+Q%26A" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preconnect (외부 링크 체감 성능 보조) -->
+    <link rel="preconnect" href="https://open.kakao.com" crossorigin>
+    <link rel="preconnect" href="https://band.us" crossorigin>
+    <link rel="preconnect" href="https://discord.gg" crossorigin>
+
+    <style>
+        :root {
+            --bg: #0b1220; /* 페이지 배경(딥 네이비) */
+            --panel: #0f1629; /* 카드 배경(한 톤 밝게) */
+            --accent: #32D27D; /* ENTRY GREEN 메인 */
+            --accent-2: #2AD48B; /* ENTRY GREEN 보조 */
+            --text: #e6f0ff; /* 본문 텍스트(밝은 틴트) */
+            --muted: #9fb3d9; /* 보조 텍스트 */
+            --ok: #10b981; /* 성공색 */
+            --warn: #f59e0b; /* 경고색 */
+            --err: #ef4444; /* 오류색 */
+            --ring: 0 0 0 3px rgba(50,210,125,0.35);
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --radius: 20px;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Sans KR,sans-serif;
+            background: radial-gradient(1000px 700px at 80% -10%, rgba(50,210,125,.08), transparent 60%), radial-gradient(900px 600px at 0% -20%, rgba(50,210,125,.12), transparent 60%), var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent)
+        }
+
+            a:hover {
+                color: var(--accent-2)
+            }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 24px
+        }
+
+        /* Skip link */
+        .skip {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden
+        }
+
+            .skip:focus {
+                left: 16px;
+                top: 16px;
+                width: auto;
+                height: auto;
+                background: #fff;
+                color: #111;
+                padding: 8px 12px;
+                border-radius: 8px;
+                z-index: 1000
+            }
+
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: saturate(180%) blur(10px);
+            background: linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.5));
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            z-index: 50
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 24px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+            display: inline-block;
+            box-shadow: var(--shadow)
+        }
+
+        .spacer {
+            flex: 1
+        }
+
+        .nav a {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text)
+        }
+
+            .nav a:hover {
+                background: rgba(255,255,255,.06)
+            }
+
+        .hero {
+            padding: 56px 0 20px
+        }
+
+        .hero-wrap {
+            display: grid;
+            gap: 18px
+        }
+
+        .h1 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 900;
+            line-height: 1.2
+        }
+
+        .lead {
+            font-size: clamp(16px, 2.2vw, 20px);
+            color: var(--muted)
+        }
+
+        .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px
+        }
+
+        .btn {
+            appearance: none;
+            border: 0;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .05s ease, box-shadow .2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none
+        }
+
+            .btn:focus {
+                outline: none;
+                box-shadow: var(--ring)
+            }
+
+            .btn:hover {
+                transform: translateY(-1px)
+            }
+
+        .btn-primary {
+            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+            color: #05202a
+        }
+
+        .btn-secondary {
+            background: #18223a;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,.08)
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px
+        }
+
+        @media(min-width:768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(min-width:992px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255,255,255,.05), transparent), var(--panel);
+            border: 1px solid rgba(255,255,255,.06);
+            padding: 18px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow)
+        }
+
+            .card h3 {
+                margin: 0 0 8px;
+                font-size: 20px
+            }
+
+            .card p {
+                margin: 0
+            }
+
+        .note {
+            border-left: 4px solid var(--accent);
+            padding: 12px 14px;
+            background: rgba(50,210,125,.08);
+            border-radius: 12px
+        }
+
+        .list-steps {
+            counter-reset: step
+        }
+
+            .list-steps li {
+                list-style: none;
+                position: relative;
+                margin: 0 0 14px;
+                padding: 10px 12px 10px 52px;
+                background: #0e1729;
+                border: 1px solid rgba(255,255,255,.06);
+                border-radius: 16px
+            }
+
+                .list-steps li::before {
+                    counter-increment: step;
+                    content: counter(step);
+                    position: absolute;
+                    left: 12px;
+                    top: 12px;
+                    width: 28px;
+                    height: 28px;
+                    display: grid;
+                    place-items: center;
+                    border-radius: 10px;
+                    font-weight: 800;
+                    background: linear-gradient(135deg,var(--accent),var(--accent-2));
+                    color: #05202a
+                }
+
+        details {
+            background: #0e1729;
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px;
+            padding: 14px 16px
+        }
+
+            details + details {
+                margin-top: 10px
+            }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700
+        }
+
+            summary::-webkit-details-marker {
+                display: none
+            }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .link-row {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .link-input {
+            flex: 1;
+            background: #0b1220;
+            border: 1px solid rgba(255,255,255,.08);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 10px 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 40px 0 60px;
+            color: var(--muted)
+        }
+
+        .tiny {
+            font-size: 12px
+        }
+
+        /* Floating CTA for mobile */
+        .dock {
+            position: fixed;
+            bottom: 14px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 60;
+            padding: 0 14px
+        }
+
+        .dock-inner {
+            display: flex;
+            gap: 8px;
+            background: rgba(15,22,41,.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.06);
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            padding: 8px
+        }
+
+        @media(min-width:900px) {
+            .dock {
+                display: none
+            }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .btn:hover {
+                transform: none
+            }
+        }
+    </style>
+
+    <!-- JSON-LD: WebSite / Organization / ContactPoint / FAQPage -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "엔트리 질문 채널",
+          "url": "https://help.205.kr/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://help.205.kr/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "코드는 어떻게 첨부하나요?",
+              "acceptedAnswer": {"@type":"Answer","text":"코드 일부만 주셔도 좋지만, 엔트리 작품 링크를 함께 공유해 주시면 더 정확하고 빠르게 확인할 수 있습니다. 코드는 사진 촬영본이 아닌 화면 캡처로 올려 주세요."}
+            },
+            {
+              "@type": "Question",
+              "name": "의도와 목표는 무엇을 적어야 하나요?",
+              "acceptedAnswer": {"@type":"Answer","text":"만들고자 한 기능과 기대한 동작을 간단히 적어 주세요. 참고한 영상·글 링크가 있다면 함께 남겨 주세요."}
+            },
+            {
+              "@type": "Question",
+              "name": "이미 시도한 방법도 필요하나요?",
+              "acceptedAnswer": {"@type":"Answer","text":"네. 오류 해결을 위해 이미 해 본 방법과 결과를 적어 주시면 같은 방법을 반복 안내하는 일을 줄일 수 있습니다."}
+            },
+            {
+              "@type": "Question",
+              "name": "오류 상황은 어느 정도로 자세히 써야 하나요?",
+              "acceptedAnswer": {"@type":"Answer","text":"어떤 장면/오브젝트에서 어떤 상황에 문제가 발생했는지 구체적으로 적어 주세요. 가능하다면 스크린샷 또는 짧은 영상을 함께 첨부해 주세요."}
+            },
+            {
+              "@type": "Question",
+              "name": "문제가 해결되면 알려야 하나요?",
+              "acceptedAnswer": {"@type":"Answer","text":"네. 답변 전이라도 해결되었다면 알려 주세요. 어떤 방법으로 해결했는지 남겨 주시면 이후 같은 문제를 겪는 분들께 큰 도움이 됩니다."}
+            }
+          ]
+        }
+    </script>
+</head>
+<body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header>
+        <nav class="nav container" aria-label="주 메뉴">
+            <div class="brand" aria-label="사이트 로고">
+                <i class="logo" aria-hidden="true"></i>
+                <span>엔트리 질문 채널</span>
+            </div>
+            <div class="spacer" aria-hidden="true"></div>
+
+            <a href="#community">커뮤니티</a>
+            <a href="#screenshot">캡처 방법</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+    </header>
+
+    <main id="main" class="container" role="main">
+        <!-- HERO -->
+        <section class="hero" aria-label="인트로">
+            <div class="hero-wrap">
+                <h1 class="h1">엔트리 질문 채널 안내</h1>
+                <p class="lead">엔트리 질문을 더 빨리, 더 쉽게! <strong>간단한 질문은 카톡</strong>, <strong>자세한 질문은 밴드 글</strong>로 남겨 주세요. 아래 체크리스트를 보고 올리면 답이 더 빨리 와요 🙂</p>
+                <div class="cta" role="group" aria-label="빠른 이동">
+                    <a class="btn btn-primary" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer" aria-label="카카오톡 오픈채팅방 열기">💬 카카오톡 오픈채팅</a>
+                    <a class="btn btn-secondary" href="https://band.us/@entryband" target="_blank" rel="noopener noreferrer" aria-label="엔트리 밴드 열기">📝 엔트리 밴드 게시글로 질문</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHANNELS -->
+        <section id="channels" aria-label="질문 채널" class="grid grid-2">
+            <article class="card">
+                <h3>카카오톡 오픈채팅방</h3>
+                <p>간단한 질문은 카카오톡으로 주시면 빠르게 답변드립니다.</p>
+                <div class="links" style="margin-top:10px">
+                    <div class="link-row">
+                        <input class="link-input" type="text" value="https://open.kakao.com/o/gHwo5vlc" aria-label="카카오톡 오픈채팅 주소" readonly>
+                        <button class="btn btn-secondary" data-copy="https://open.kakao.com/o/gHwo5vlc" aria-label="카카오톡 링크 복사">📋 복사</button>
+                        <a class="btn btn-primary" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer">바로 가기</a>
+                    </div>
+                </div>
+            </article>
+            <article class="card">
+                <h3>엔트리 밴드</h3>
+                <p>복잡한 질문은 밴드에 올려 주시면 자세한 답변이 편합니다. <strong>댓글이 아닌 ‘게시글’</strong>로 질문을 작성해 주세요.</p>
+                <div class="links" style="margin-top:10px">
+                    <div class="link-row">
+                        <input class="link-input" type="text" value="https://band.us/@entryband" aria-label="엔트리 밴드 주소" readonly>
+                        <button class="btn btn-secondary" data-copy="https://band.us/@entryband" aria-label="밴드 링크 복사">📋 복사</button>
+                        <a class="btn btn-primary" href="https://band.us/@entryband" target="_blank" rel="noopener noreferrer">바로 가기</a>
+                    </div>
+                </div>
+            </article>
+            <aside class="card" style="grid-column:1/-1">
+                <div class="note">
+                    <strong>안내:</strong> 밴드에서는 <em>댓글</em>이 아닌 <em>게시글</em>로 질문을 올려 주세요. 캡처 이미지는 텍스트가 선명한 <strong>화면 캡처</strong>로 첨부하면 검토가 훨씬 빨라집니다.
+                </div>
+            </aside>
+        </section>
+
+        <!-- GUIDE -->
+        <section id="guide" style="margin-top:28px" aria-label="질문 전 체크리스트">
+            <h2 style="margin:0 0 10px">질문 전 꼭 읽어주세요</h2>
+            <ol class="list-steps" aria-label="체크리스트">
+                <li>
+                    <strong>코드를 함께 올려 주세요.</strong><br>
+                    캡처한 이미지나 엔트리 작품 링크가 좋아요. 사진으로 찍은 화면보다 <u>화면 캡처</u>가 더 또렷해요.
+                </li>
+                <li>
+                    <strong>무엇을 만들고 싶었는지 적어 주세요.</strong><br>
+                    기대한 동작을 한 줄로 써 보아요. 참고한 영상/글이 있다면 링크도 함께요.
+                </li>
+                <li>
+                    <strong>이미 해 본 방법을 알려 주세요.</strong><br>
+                    시도한 것과 결과를 적어 주면, 같은 방법을 다시 안내하지 않게 도와줘요.
+                </li>
+                <li>
+                    <strong>오류가 언제, 어디서 생겼는지 알려 주세요.</strong><br>
+                    어떤 화면/오브젝트에서 문제가 생겼는지 쓰고, 스크린샷(또는 짧은 영상)을 올려 주세요.
+                </li>
+                <li>
+                    <strong>해결되면 한마디만!</strong><br>
+                    먼저 해결됐다면 알려 주세요. 어떻게 해결했는지 남기면 다음 친구들에게 큰 도움이 돼요.
+                </li>
+            </ol>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" style="margin-top:28px" aria-label="자주 묻는 질문">
+            <h2 style="margin:0 0 10px">FAQ</h2>
+            <details>
+                <summary>코드 캡처는 어떻게 하나요?</summary>
+                <div class="tiny" style="color:var(--muted);margin-top:6px">PNG 권장, 코드 부분만 크게 보이게 캡처해요.</div>
+                사진은 빛 반사/흔들림 때문에 글자가 잘 안 보여요.
+            </details>
+            <details>
+                <summary>밴드에 글을 쓸 때 예시가 있나요?</summary>
+                <p style="margin:6px 0 0">[제목] 문제 한 줄 요약<br>[본문] ① 의도 ② 현재 상황 ③ 해 본 것 ④ 스샷/영상 ⑤ 엔트리 링크</p>
+            </details>
+            <details>
+                <summary>카톡이 좋을까요, 밴드가 좋을까요?</summary>
+                <p style="margin:6px 0 0">작은 질문은 카톡, 자세한 문제/버그는 밴드 글을 추천해요.</p>
+            </details>
+        </section>
+        <!-- SCREENSHOT GUIDE -->
+        <section id="screenshot" style="margin-top:28px" aria-label="코드 캡처 방법">
+            <h2 style="margin:0 0 10px">코드 캡처, 이렇게 해요</h2>
+            <div class="grid grid-2">
+                <article class="card">
+                    <h3>Windows</h3>
+                    <ul>
+                        <li><strong>이 방법만 쓰면 돼요</strong>: <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> 를 누른 뒤, 캡처하고 싶은 <em>영역</em>만 드래그해요. 클립보드에 저장되니 그림판/포토 앱에서 붙여넣기 후 <strong>PNG</strong>로 저장하면 끝!</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>macOS</h3>
+                    <ul>
+                        <li><strong>이 방법만 쓰면 돼요</strong>: <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> 를 누르고, 원하는 <em>영역</em>만 드래그해요. 자동으로 바탕화면에 저장돼요. 필요하면 파일 이름만 바꿔서 올리면 돼요.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="community" style="margin-top:28px" aria-label="잡담 커뮤니티">
+            <article class="card">
+                <h3>잡담 커뮤니티</h3>
+                <p>수다 떨고, 작품 자랑하고, 친구 만들어요 😊</p>
+                <div class="links" style="margin-top:10px">
+                    <div class="link-row">
+                        <input class="link-input" type="text" value="https://discord.gg/PUFCz9Ykba" aria-label="디스코드 초대 링크" readonly>
+                        <button class="btn btn-secondary" data-copy="https://discord.gg/PUFCz9Ykba" aria-label="디스코드 링크 복사">📋 복사</button>
+                        <a class="btn btn-primary" href="https://discord.gg/PUFCz9Ykba" target="_blank" rel="noopener noreferrer">디스코드 참여</a>
+                    </div>
+                    <div class="link-row">
+                        <input class="link-input" type="text" value="https://open.kakao.com/o/gqHqTTuc" aria-label="카카오톡 잡담방 링크" readonly>
+                        <button class="btn btn-secondary" data-copy="https://open.kakao.com/o/gqHqTTuc" aria-label="카카오톡 잡담방 링크 복사">📋 복사</button>
+                        <a class="btn btn-primary" href="https://open.kakao.com/o/gqHqTTuc" target="_blank" rel="noopener noreferrer">카톡 잡담방</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <footer aria-label="바닥글">
+            <div class="tiny">마지막 업데이트: <time datetime="2025-09-19">2025-09-19</time></div>
+            <div class="tiny">© 엔트리 질문 채널 안내. 본 페이지는 비상업적 안내 목적입니다.</div>
+        </footer>
+    </main>
+
+    <!-- Mobile dock CTA -->
+    <div class="dock" role="region" aria-label="빠른 실행">
+        <div class="dock-inner">
+            <a class="btn btn-primary" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener">카카오톡</a>
+            <a class="btn btn-secondary" href="https://band.us/@entryband" target="_blank" rel="noopener">밴드 질문</a>
+        </div>
+    </div>
+
+    <script>
+        // 복사 버튼
+        document.querySelectorAll('[data-copy]').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const text = e.currentTarget.getAttribute('data-copy');
+                try {
+                    await navigator.clipboard.writeText(text);
+                    e.currentTarget.textContent = '✅ 복사됨';
+                    setTimeout(() => { e.currentTarget.textContent = '📋 복사' }, 1400);
+                } catch (err) {
+                    alert('복사에 실패했어요. 길게 눌러 직접 복사해 주세요.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
