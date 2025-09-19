@@ -240,6 +240,10 @@
             padding: 40px 0 60px;
             color: var(--muted)
         }
+
+        #faq details + details {
+            margin-top: 12px
+        }
     </style>
 
     <!-- JSON-LD: Breadcrumb + HowTo + Video + FAQ -->
@@ -301,6 +305,17 @@
             <div style="margin-top:10px" class="note">요약: <strong>이름/점수 저장 → 점수 기준 정렬 → 상위 N명 보여주기</strong></div>
         </section>
 
+        <!-- VIDEO (상단으로 이동) -->
+        <section id="video" style="margin-top:16px" aria-label="영상으로 보기">
+            <h2 style="margin:0 0 10px">영상으로 보기</h2>
+            <div class="card">
+                <p class="tiny">유튜브로 보기: <a href="https://youtu.be/ksnSnkSKIY4" target="_blank" rel="noopener">https://youtu.be/ksnSnkSKIY4</a></p>
+                <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06)">
+                    <iframe title="랭킹 만드는 법" src="https://www.youtube-nocookie.com/embed/ksnSnkSKIY4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+                </div>
+            </div>
+        </section>
+
         <section id="about" class="grid grid-2" aria-label="개요">
             <article class="card">
                 <h3>준비물</h3>
@@ -344,16 +359,6 @@
         </section>
 
         <!-- VIDEO -->
-        <section id="video" style="margin-top:28px" aria-label="영상으로 보기">
-            <h2 style="margin:0 0 10px">영상으로 보기</h2>
-            <div class="card">
-                <p class="tiny">유튜브로 보기: <a href="https://youtu.be/ksnSnkSKIY4" target="_blank" rel="noopener">https://youtu.be/ksnSnkSKIY4</a></p>
-                <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06)">
-                    <iframe title="랭킹 만드는 법" src="https://www.youtube-nocookie.com/embed/ksnSnkSKIY4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
-                </div>
-            </div>
-        </section>
-
         <!-- FAQ -->
         <section id="faq" style="margin-top:28px" aria-label="자주 묻는 질문">
             <h2 style="margin:0 0 10px">FAQ</h2>
@@ -372,22 +377,37 @@
         </section>
 
         <!-- NEXT LINKS -->
-        <section style="margin-top:28px" aria-label="관련 페이지">
-            <div class="card">
-                <h3>관련 페이지</h3>
-                <ul>
-                    <li><a href="/">질문 안내(메인)</a></li>
-                    <li><a href="/qna-template/">질문 템플릿</a> (예정)</li>
-                    <li><a href="/common-errors/">자주 하는 실수</a> (예정)</li>
-                    <li><a href="/screenshot-guide/">캡처 방법</a> (예정)</li>
-                </ul>
+        <section style="margin-top:28px" aria-label="도움이 필요하신가요?">
+            <div class="card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+                <h3 style="margin:0">도움이 필요하신가요?</h3>
+                <a class="btn btn-primary" href="#" id="go-home">질문 하러가기</a>
             </div>
         </section>
 
         <footer>
             <div class="tiny">마지막 업데이트: <time datetime="2025-09-19">2025-09-19</time></div>
-            <div class="tiny">© 엔트리 도움 페이지</div>
+            <div class="tiny">© 205와 엔트리</div>
+            <div class="tiny">“205®”는 대한민국 특허청에 정식 등록된 상표입니다<br>(등록번호: 제4023349250000호 / 등록일: 2025년 3월 24일).</div>
         </footer>
     </main>
+    <script>
+        (function () {
+            var btn = document.getElementById('go-home');
+            if (!btn) return;
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // 1) 상단 네비의 "홈" 링크를 그대로 트리거
+                var navHome = document.querySelector('nav a[href="/"], nav a[href="/helpEntry/"]');
+                if (navHome) { navHome.click(); return; }
+                // 2) 캐논컬 기준으로 도메인 루트로 이동 (폴백)
+                try {
+                    var canonical = document.querySelector('link[rel="canonical"]');
+                    var baseHref = canonical ? canonical.href : location.href;
+                    var u = new URL(baseHref);
+                    location.href = u.origin + "/";
+                } catch (_) { location.href = "/"; }
+            });
+        })();
+    </script>
 </body>
 </html>
