@@ -1,251 +1,72 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
+
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>엔트리 랭킹 만드는 법 | 쉬운 가이드</title>
-    <meta name="description" content="엔트리에서 랭킹(순위) 만드는 쉬운 방법을 그림처럼 따라 해요. 준비물, 단계별 블록, 자주 하는 실수, 영상으로 보기까지 한 페이지에 정리했습니다." />
-    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-    <meta name="theme-color" content="#32D27D">
-
+    <meta content="엔트리에서 랭킹(순위) 만드는 쉬운 방법을 그림처럼 따라 해요. 준비물, 단계별 블록, 자주 하는 실수, 영상으로 보기까지 한 페이지에 정리했습니다." name="description" />
+    <meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" name="robots" />
+    <meta content="#32D27D" name="theme-color" />
     <!-- Canonical -->
-    <link rel="canonical" href="https://help.205.kr/ranking/" />
-
+    <link href="https://help.205.kr/ranking/" rel="canonical" />
     <!-- Open Graph / Twitter (og:image는 배포 후 실제 이미지로 교체하세요) -->
-    <meta property="og:locale" content="ko_KR" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="엔트리 랭킹 만드는 법 | 쉬운 가이드" />
-    <meta property="og:description" content="엔트리에서 랭킹(순위) 만드는 쉬운 방법. 단계별 블록, 체크리스트, 영상으로 보기 제공." />
-    <meta property="og:url" content="https://help.205.kr/ranking/" />
-    <meta property="og:site_name" content="엔트리 도움" />
-    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Entry+Ranking+Guide" />
-    <meta name="twitter:card" content="summary_large_image" />
-
+    <meta content="ko_KR" property="og:locale">
+    <meta content="article" property="og:type" />
+    <meta content="엔트리 랭킹 만드는 법 | 쉬운 가이드" property="og:title" />
+    <meta content="엔트리에서 랭킹(순위) 만드는 쉬운 방법. 단계별 블록, 체크리스트, 영상으로 보기 제공." property="og:description" />
+    <meta content="https://help.205.kr/ranking/" property="og:url" />
+    <meta content="엔트리 도움" property="og:site_name" />
+    <meta content="https://help.205.kr/assets/og-205-ranking.png" property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
     <style>
-        :root {
-            --bg: #0b1220; /* 페이지 배경 */
-            --panel: #0f1629; /* 카드 배경 */
-            --accent: #32D27D; /* ENTRY GREEN 메인 */
-            --accent-2: #2AD48B; /* ENTRY GREEN 보조 */
-            --text: #e6f0ff; /* 본문 텍스트 */
-            --muted: #9fb3d9; /* 보조 텍스트 */
-            --ring: 0 0 0 3px rgba(50,210,125,0.35);
-            --shadow: 0 10px 30px rgba(0,0,0,.35);
-            --radius: 20px;
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        body {
-            margin: 0;
-            font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Sans KR,sans-serif;
-            background: radial-gradient(1000px 700px at 80% -10%, rgba(50,210,125,.08), transparent 60%), radial-gradient(900px 600px at 0% -20%, rgba(50,210,125,.12), transparent 60%), var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        a:not(.btn) {
-            color: var(--accent)
-        }
-
-            a:not(.btn):hover {
-                color: var(--accent-2)
-            }
-
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 24px
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            backdrop-filter: saturate(180%) blur(10px);
-            background: linear-gradient(180deg,rgba(11,18,32,.9),rgba(11,18,32,.5));
-            border-bottom: 1px solid rgba(255,255,255,.06);
-            z-index: 50
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 24px
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800
-        }
-
-        .logo {
-            width: 26px;
-            height: 26px;
-            border-radius: 8px;
-            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+        nav .submenu {
+            position: relative;
             display: inline-block;
-            box-shadow: var(--shadow)
+            margin-left: .5rem;
         }
 
-        .spacer {
-            flex: 1
-        }
-
-        .nav a {
-            padding: 8px 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text)
-        }
-
-            .nav a:hover {
-                background: rgba(255,255,255,.06)
-            }
-
-        .hero {
-            padding: 48px 0 16px
-        }
-
-        .h1 {
-            font-size: clamp(26px,3.2vw,40px);
-            font-weight: 900;
-            line-height: 1.2;
-            margin: 0
-        }
-
-        .lead {
-            font-size: clamp(15px,2vw,18px);
-            color: var(--muted);
-            margin: 8px 0 0
-        }
-
-        .grid {
-            display: grid;
-            gap: 16px
-        }
-
-        @media(min-width:820px) {
-            .grid-2 {
-                grid-template-columns: 1.2fr .8fr
-            }
-        }
-
-        .card {
-            background: linear-gradient(180deg, rgba(255,255,255,.05), transparent), var(--panel);
-            border: 1px solid rgba(255,255,255,.06);
-            padding: 18px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow)
-        }
-
-            .card h3 {
-                margin: 0 0 8px;
-                font-size: 20px
-            }
-
-        .btn {
-            appearance: none;
-            border: 0;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform .05s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none
-        }
-
-            .btn:hover {
-                transform: translateY(-1px)
-            }
-
-            .btn:visited {
-                color: inherit
-            }
-
-        .btn-primary {
-            background: linear-gradient(135deg,var(--accent),var(--accent-2));
-            color: #05202a
-        }
-
-        .btn-secondary {
-            background: #18223a;
-            color: var(--text);
-            border: 1px solid rgba(255,255,255,.08)
-        }
-
-        .btn-primary:hover, .btn-primary:focus-visible, .btn-primary:active {
-            color: #05202a
-        }
-
-        .btn-secondary:hover, .btn-secondary:focus-visible, .btn-secondary:active {
-            color: var(--text)
-        }
-
-        .list-steps {
-            counter-reset: step
-        }
-
-            .list-steps li {
+            nav .submenu summary {
                 list-style: none;
-                position: relative;
-                margin: 0 0 14px;
-                padding: 10px 12px 10px 52px;
-                background: #0e1729;
-                border: 1px solid rgba(255,255,255,.06);
-                border-radius: 16px
+                cursor: pointer;
+                padding: .5rem .75rem;
+                border-radius: .75rem;
+                border: 1px solid rgba(255,255,255,.08);
             }
 
-                .list-steps li::before {
-                    counter-increment: step;
-                    content: counter(step);
-                    position: absolute;
-                    left: 12px;
-                    top: 12px;
-                    width: 28px;
-                    height: 28px;
-                    display: grid;
-                    place-items: center;
-                    border-radius: 10px;
-                    font-weight: 800;
-                    background: linear-gradient(135deg,var(--accent),var(--accent-2));
-                    color: #05202a
+            nav .submenu[open] summary {
+                outline: 2px solid rgba(255,255,255,.2);
+            }
+
+            nav .submenu ul[role="menu"] {
+                position: absolute;
+                right: 0;
+                top: 2.6rem;
+                min-width: 12rem;
+                padding: .5rem;
+                margin: 0;
+                border-radius: .75rem;
+                background: #111726;
+                box-shadow: 0 12px 30px rgba(0,0,0,.35);
+                border: 1px solid rgba(255,255,255,.08);
+            }
+
+            nav .submenu li {
+                list-style: none;
+                margin: 0;
+            }
+
+            nav .submenu a[role="menuitem"] {
+                display: block;
+                padding: .5rem .75rem;
+                border-radius: .5rem;
+                text-decoration: none;
+            }
+
+                nav .submenu a[role="menuitem"]:hover, nav .submenu a[role="menuitem"]:focus {
+                    background: rgba(50,210,125,.12);
                 }
-
-        .note {
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            background: rgba(50,210,125,.08);
-            border-radius: 12px
-        }
-
-        .tiny {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        footer {
-            margin-top: 40px;
-            padding: 40px 0 60px;
-            color: var(--muted)
-        }
-
-        #faq details + details {
-            margin-top: 12px
-        }
     </style>
-
     <!-- JSON-LD: Breadcrumb + HowTo + Video + FAQ -->
     <script type="application/ld+json">
         {
@@ -284,39 +105,53 @@
           ]
         }
     </script>
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="엔트리 랭킹 만드는 법 | 쉬운 가이드" name="twitter:title" />
+    <meta content="엔트리에서 랭킹(순위) 만드는 쉬운 방법. 단계별 블록, 체크리스트, 영상으로 보기 제공." name="twitter:description" />
+    <meta content="https://help.205.kr/assets/og-205-ranking.png" name="twitter:image" />
+    <link href="https://help.205.kr/site.webmanifest" rel="manifest" />
+    <link href="https://help.205.kr/assets/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="https://help.205.kr/assets/logo-192.png" rel="icon" sizes="192x192" />
+    <script type="application/ld+json">        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "엔트리 질문 채널",
+          "url": "https://help.205.kr/",
+          "logo": "https://help.205.kr/assets/logo-512.png"
+        }</script>
 </head>
 <body>
+    <a class="skip" href="#main">본문 바로가기</a>
     <header>
-        <nav class="nav container" aria-label="빵부스러기">
-            <div class="brand"><i class="logo" aria-hidden="true"></i><span>엔트리 도움</span></div>
-            <div class="spacer" aria-hidden="true"></div>
+        <nav aria-label="빵부스러기" class="nav container">
+            <div class="brand"><i aria-hidden="true" class="logo"></i><span>엔트리 도움</span></div>
+            <div aria-hidden="true" class="spacer"></div>
             <a href="/">홈</a>
             <a href="#steps">단계</a>
             <a href="#video">영상으로 보기</a>
             <a href="#faq">FAQ</a>
+            <details class="submenu"><summary aria-haspopup="menu">더보기</summary><ul id="more-menu" role="menu"><li role="none"><a href="/ranking/" role="menuitem">랭킹</a></li><li role="none"><a href="/guide/" role="menuitem">질문 가이드</a></li><li role="none"><a href="/resources/" role="menuitem">자료실</a></li></ul></details>
         </nav>
     </header>
-
-    <main class="container" role="main">
+    <main class="container" id="main" role="main">
         <!-- HERO -->
         <section class="hero">
             <h1 class="h1">랭킹 만드는 법</h1>
             <p class="lead">게임 점수를 모아 <strong>순위표</strong>를 보여주는 방법을 쉬운 말로 정리했어요. 아래 순서대로 천천히 따라와요.</p>
-            <div style="margin-top:10px" class="note">요약: <strong>이름/점수 저장 → 점수 기준 정렬 → 상위 N명 보여주기</strong></div>
+            <div class="note" style="margin-top:10px">요약: <strong>이름/점수 저장 → 점수 기준 정렬 → 상위 N명 보여주기</strong></div>
         </section>
-
         <!-- VIDEO (상단으로 이동) -->
-        <section id="video" style="margin-top:16px" aria-label="영상으로 보기">
+        <section aria-label="영상으로 보기" id="video" style="margin-top:16px">
             <h2 style="margin:0 0 10px">영상으로 보기</h2>
             <div class="card">
-                <p class="tiny">유튜브로 보기: <a href="https://youtu.be/ksnSnkSKIY4" target="_blank" rel="noopener">https://youtu.be/ksnSnkSKIY4</a></p>
+                <p class="tiny">유튜브로 보기: <a href="https://youtu.be/ksnSnkSKIY4" rel="noopener noreferrer nofollow" target="_blank">https://youtu.be/ksnSnkSKIY4</a></p>
                 <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06)">
-                    <iframe title="랭킹 만드는 법" src="https://www.youtube-nocookie.com/embed/ksnSnkSKIY4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+                    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/ksnSnkSKIY4" style="position:absolute;inset:0;width:100%;height:100%;border:0" title="랭킹 만드는 법"></iframe>
                 </div>
             </div>
         </section>
-
-        <section id="about" class="grid grid-2" aria-label="개요">
+        <section aria-label="개요" class="grid grid-2" id="about">
             <article class="card">
                 <h3>준비물</h3>
                 <ul>
@@ -334,33 +169,31 @@
                 </ul>
             </article>
         </section>
-
         <!-- STEPS -->
-        <section id="steps" style="margin-top:28px" aria-label="단계">
+        <section aria-label="단계" id="steps" style="margin-top:28px">
             <h2 style="margin:0 0 10px">단계별로 따라하기</h2>
             <ol class="list-steps">
                 <li>
-                    <strong>점수 저장</strong><br>
+                    <strong>점수 저장</strong><br />
                     게임이 끝났을 때 <em>이름</em>과 <em>점수</em>를 각각 리스트에 넣어요. (예: <code>학생이름에 이름 추가하기</code>, <code>학생점수에 점수 추가하기</code>)
                 </li>
                 <li>
-                    <strong>정렬</strong><br>
+                    <strong>정렬</strong><br />
                     점수가 큰 순서대로 정렬해요. 동점이면 이름으로 한 번 더 정렬하면 깔끔해요.
                 </li>
                 <li>
-                    <strong>상위 N명</strong><br>
+                    <strong>상위 N명</strong><br />
                     5명 또는 10명까지만 화면에 보여줘요. 너무 많으면 글자가 작아져요.
                 </li>
                 <li>
-                    <strong>화면에 출력</strong><br>
+                    <strong>화면에 출력</strong><br />
                     1등부터 차례대로 "이름 - 점수" 모양으로 적어줘요. 줄바꿈을 써서 보기 좋게 만드세요.
                 </li>
             </ol>
         </section>
-
         <!-- VIDEO -->
         <!-- FAQ -->
-        <section id="faq" style="margin-top:28px" aria-label="자주 묻는 질문">
+        <section aria-label="자주 묻는 질문" id="faq" style="margin-top:28px">
             <h2 style="margin:0 0 10px">FAQ</h2>
             <details class="card">
                 <summary>동점이 많으면 순위가 이상해 보여요.</summary>
@@ -375,19 +208,17 @@
                 <p style="margin:6px 0 0">원하면 0점은 빼고 보여줘도 돼요. 규칙을 미리 정하고 모두에게 똑같이 적용해요.</p>
             </details>
         </section>
-
         <!-- NEXT LINKS -->
-        <section style="margin-top:28px" aria-label="도움이 필요하신가요?">
+        <section aria-label="도움이 필요하신가요?" style="margin-top:28px">
             <div class="card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
                 <h3 style="margin:0">도움이 필요하신가요?</h3>
                 <a class="btn btn-primary" href="#" id="go-home">질문 하러가기</a>
             </div>
         </section>
-
         <footer aria-label="바닥글">
             <div class="tiny">마지막 업데이트: <time datetime="2025-09-19">2025-09-19</time></div>
             <div class="tiny">© 205와 엔트리</div>
-            <div class="tiny">“205®”는 대한민국 특허청에 정식 등록된 상표입니다<br>(등록번호: 제4023349250000호 / 등록일: 2025년 3월 24일).</div>
+            <div class="tiny">“205®”는 대한민국 특허청에 정식 등록된 상표입니다<br />(등록번호: 제4023349250000호 / 등록일: 2025년 3월 24일).</div>
         </footer>
     </main>
     <script>
