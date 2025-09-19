@@ -1,0 +1,20 @@
+﻿{
+	"name": "엔트리 질문 채널",
+	"short_name": "205 Help",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#0b1220",
+	"theme_color": "#32D27D",
+	"icons": [
+		{
+			"src": "/assets/logo-192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/assets/logo-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
