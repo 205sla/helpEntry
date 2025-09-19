@@ -58,11 +58,11 @@
             line-height: 1.6;
         }
 
-        a {
+        a:not(.btn) {
             color: var(--accent)
         }
 
-            a:hover {
+            a:not(.btn):hover {
                 color: var(--accent-2)
             }
 
@@ -191,6 +191,26 @@
             .btn:hover {
                 transform: translateY(-1px)
             }
+
+            .btn:visited {
+                color: inherit
+            }
+
+        .btn-primary:visited {
+            color: #05202a
+        }
+
+        .btn-secondary:visited {
+            color: var(--text)
+        }
+
+        .btn-primary:hover, .btn-primary:focus-visible, .btn-primary:active {
+            color: #05202a
+        }
+
+        .btn-secondary:hover, .btn-secondary:focus-visible, .btn-secondary:active {
+            color: var(--text)
+        }
 
         .btn-primary {
             background: linear-gradient(135deg,var(--accent),var(--accent-2));
@@ -451,7 +471,7 @@
                 <div class="links" style="margin-top:10px">
                     <div class="link-row">
                         <input class="link-input" type="text" value="https://open.kakao.com/o/gHwo5vlc" aria-label="카카오톡 오픈채팅 주소" readonly>
-                        <button class="btn btn-secondary" data-copy="https://open.kakao.com/o/gHwo5vlc" aria-label="카카오톡 링크 복사">📋 복사</button>
+
                         <a class="btn btn-primary" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer">바로 가기</a>
                     </div>
                 </div>
@@ -462,7 +482,7 @@
                 <div class="links" style="margin-top:10px">
                     <div class="link-row">
                         <input class="link-input" type="text" value="https://band.us/@entryband" aria-label="엔트리 밴드 주소" readonly>
-                        <button class="btn btn-secondary" data-copy="https://band.us/@entryband" aria-label="밴드 링크 복사">📋 복사</button>
+
                         <a class="btn btn-primary" href="https://band.us/@entryband" target="_blank" rel="noopener noreferrer">바로 가기</a>
                     </div>
                 </div>
@@ -525,13 +545,13 @@
                 <article class="card">
                     <h3>Windows</h3>
                     <ul>
-                        <li><strong>이 방법만 쓰면 돼요</strong>: <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> 를 누른 뒤, 캡처하고 싶은 <em>영역</em>만 드래그해요. 클립보드에 저장되니 그림판/포토 앱에서 붙여넣기 후 <strong>PNG</strong>로 저장하면 끝!</li>
+                        <li><kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> 를 누른 뒤, 캡처하고 싶은 <em>영역</em>만 드래그해요. 클립보드에 저장되니 그림판/포토 앱에서 붙여넣기 후 <strong>PNG</strong>로 저장하면 끝!</li>
                     </ul>
                 </article>
                 <article class="card">
                     <h3>macOS</h3>
                     <ul>
-                        <li><strong>이 방법만 쓰면 돼요</strong>: <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> 를 누르고, 원하는 <em>영역</em>만 드래그해요. 자동으로 바탕화면에 저장돼요. 필요하면 파일 이름만 바꿔서 올리면 돼요.</li>
+                        <li><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> 를 누르고, 원하는 <em>영역</em>만 드래그해요. 자동으로 바탕화면에 저장돼요. 필요하면 파일 이름만 바꿔서 올리면 돼요.</li>
                     </ul>
                 </article>
             </div>
@@ -544,12 +564,12 @@
                 <div class="links" style="margin-top:10px">
                     <div class="link-row">
                         <input class="link-input" type="text" value="https://discord.gg/PUFCz9Ykba" aria-label="디스코드 초대 링크" readonly>
-                        <button class="btn btn-secondary" data-copy="https://discord.gg/PUFCz9Ykba" aria-label="디스코드 링크 복사">📋 복사</button>
+
                         <a class="btn btn-primary" href="https://discord.gg/PUFCz9Ykba" target="_blank" rel="noopener noreferrer">디스코드 참여</a>
                     </div>
                     <div class="link-row">
                         <input class="link-input" type="text" value="https://open.kakao.com/o/gqHqTTuc" aria-label="카카오톡 잡담방 링크" readonly>
-                        <button class="btn btn-secondary" data-copy="https://open.kakao.com/o/gqHqTTuc" aria-label="카카오톡 잡담방 링크 복사">📋 복사</button>
+
                         <a class="btn btn-primary" href="https://open.kakao.com/o/gqHqTTuc" target="_blank" rel="noopener noreferrer">카톡 잡담방</a>
                     </div>
                 </div>
@@ -570,20 +590,6 @@
         </div>
     </div>
 
-    <script>
-        // 복사 버튼
-        document.querySelectorAll('[data-copy]').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
-                const text = e.currentTarget.getAttribute('data-copy');
-                try {
-                    await navigator.clipboard.writeText(text);
-                    e.currentTarget.textContent = '✅ 복사됨';
-                    setTimeout(() => { e.currentTarget.textContent = '📋 복사' }, 1400);
-                } catch (err) {
-                    alert('복사에 실패했어요. 길게 눌러 직접 복사해 주세요.');
-                }
-            });
-        });
-    </script>
+
 </body>
 </html>
