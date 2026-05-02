@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>엔트리 질문 채널 안내 | 쉽게 물어보세요</title>
+<meta name="description" content="엔트리 질문을 빠르게 해결하는 안내입니다. 간단한 질문은 카카오톡, 자세한 질문은 밴드에 글로 올려 주세요. 잡담은 디스코드/카톡에서!" />
+<link rel="canonical" href="https://help.205.kr/" />
+<meta property="og:title" content="엔트리 질문 채널 안내 | 쉽게 물어보세요" />
+<meta property="og:description" content="간단한 질문은 카카오톡, 자세한 질문은 밴드 글로. 답을 더 빨리 받는 체크리스트도 함께 보세요." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://help.205.kr/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "name": "엔트리 질문 채널 안내", "url": "https://help.205.kr/" },
+    { "@type": "Organization", "name": "205", "url": "https://help.205.kr/" },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "코드 캡처는 어떻게 하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PNG 권장, 코드 부분만 크게 보이게 캡처해요. 사진은 빛 반사/흔들림 때문에 글자가 잘 안 보여요." } },
+      { "@type": "Question", "name": "밴드에 글을 쓸 때 예시가 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[제목] 문제 한 줄 요약 / [본문] ① 의도 ② 현재 상황 ③ 해 본 것 ④ 스샷/영상 ⑤ 엔트리 링크" } },
+      { "@type": "Question", "name": "카톡이 좋을까요, 밴드가 좋을까요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "작은 질문은 카톡, 자세한 문제/버그는 밴드 글을 추천해요." } }
+    ]}
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   Page-specific styles — built on top of design tokens
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms var(--ease-standard), transform 700ms var(--ease-standard);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+.reveal.r-left  { transform: translateX(-32px); }
+.reveal.r-right { transform: translateX(32px); }
+.reveal.r-pop   { transform: translateY(20px) scale(0.96); transition-timing-function: var(--ease-pop); transition-duration: 600ms; }
+.reveal.r-fade  { transform: none; }
+.reveal.in.r-left, .reveal.in.r-right { transform: none; }
+.reveal.in.r-pop { transform: none; }
+
+/* Stagger via inline --i (set by JS) */
+.reveal { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* Hero parallax */
+.hero-character { transform: translateY(var(--py, 0px)); transition: transform 120ms linear; }
+.hero-character.float-on { animation: float 6s var(--ease-standard) infinite; }
+
+/* Checklist line draw */
+.checklist-list::before {
+  background: linear-gradient(180deg, var(--c205-mint) 0%, var(--c205-pink) 100%);
+  background-size: 100% 200%;
+  background-position: 0 100%;
+  transition: background-position 1200ms var(--ease-standard);
+}
+.checklist-list.in::before { background-position: 0 0; }
+
+/* Number pop on reveal */
+.checklist-item.in .checklist-num {
+  animation: numPop 500ms var(--ease-pop);
+}
+@keyframes numPop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  padding-bottom: 80px; /* room for mobile dock */
+}
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  background: var(--c205-ink);
+  color: var(--fg-on-dark);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  z-index: 1000;
+  transition: top var(--dur-base) var(--ease-standard);
+}
+.skip-link:focus { top: 16px; color: var(--fg-on-dark); text-decoration: none; }
+
+/* ---------- Layout container ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter-mobile);
+}
+@media (min-width: 600px) { .container { padding-inline: var(--gutter-tablet); } }
+@media (min-width: 1100px) { .container { padding-inline: var(--gutter-desktop); } }
+
+section { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* ============================================================
+   Header / Nav
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--border-1);
+}
+.nav {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--fg-1);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background:
+    radial-gradient(circle at 50% 60%, rgba(255,157,190,0.55) 0%, transparent 70%),
+    var(--c205-bg-mood);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mark);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  box-shadow: var(--shadow-2);
+}
+.brand-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-15);
+  letter-spacing: -0.01em;
+}
+.brand-name .sub { color: var(--fg-3); font-weight: var(--fw-medium); margin-left: 6px; }
+
+.nav-links {
+  display: none;
+  gap: 4px;
+  align-items: center;
+}
+@media (min-width: 720px) { .nav-links { display: inline-flex; } }
+.nav-links a {
+  color: var(--fg-2);
+  font-size: var(--fs-15);
+  font-weight: var(--fw-medium);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+}
+.nav-links a:hover { background: var(--bg-3); color: var(--fg-1); text-decoration: none; }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--c205-ink);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard);
+}
+.nav-cta:hover { background: #000; transform: translateY(-1px); color: #fff; text-decoration: none; }
+@media (max-width: 480px) { .nav-cta .full { display: none; } }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  position: relative;
+  background: var(--c205-bg-mood);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 60% at 70% 55%, rgba(255,157,190,0.42) 0%, transparent 65%),
+    radial-gradient(45% 45% at 18% 30%, rgba(93,211,200,0.20) 0%, transparent 70%);
+  z-index: -1;
+}
+.hero::after {
+  /* subtle paper-grain feel via dot pattern */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 72px 0 48px;
+}
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 1fr;
+    padding: 96px 0 88px;
+    gap: 48px;
+  }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-13);
+  color: rgba(255,255,255,0.92);
+  font-weight: var(--fw-medium);
+  backdrop-filter: blur(6px);
+  margin-bottom: 20px;
+}
+.hero-eyebrow .dot {
+  width: 18px; height: 18px; border-radius: 999px;
+  background: var(--c205-pink);
+  display: grid; place-items: center;
+  color: #fff; font-size: 11px; font-weight: 700;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 20px;
+}
+.hero-title .accent {
+  color: var(--c205-pink);
+  position: relative;
+  white-space: nowrap;
+}
+.hero-title .accent::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 8px;
+  background: rgba(255,157,190,0.30);
+  border-radius: 999px;
+  z-index: -1;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.85);
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.7;
+  margin: 0 0 28px;
+  max-width: 56ch;
+}
+.hero-sub strong {
+  color: #fff;
+  font-weight: var(--fw-semibold);
+  background: linear-gradient(180deg, transparent 60%, rgba(255,157,190,0.45) 60%);
+  padding: 0 2px;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-standard),
+              background var(--dur-fast) var(--ease-standard),
+              box-shadow var(--dur-fast) var(--ease-standard),
+              color var(--dur-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+.btn-primary {
+  background: var(--c205-pink);
+  color: #2a1721;
+  box-shadow: 0 6px 20px rgba(255,157,190,0.35), inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+.btn-primary:hover { background: var(--c205-pink-hover); color: #2a1721; box-shadow: 0 10px 28px rgba(255,157,190,0.45); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  border-color: rgba(255,255,255,0.30);
+  backdrop-filter: blur(6px);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.16); color: #fff; }
+
+.btn-ghost {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  border: 1px solid var(--border-1);
+}
+.btn-ghost:hover { background: var(--bg-2); }
+
+.btn-mint {
+  background: var(--c205-mint);
+  color: #0d3a37;
+  box-shadow: 0 4px 14px rgba(93,211,200,0.30);
+}
+.btn-mint:hover { background: var(--c205-mint-hover); color: #0d3a37; }
+
+.hero-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-hand);
+  font-size: var(--fs-16);
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.06);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+/* Hero character */
+.hero-visual {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+@media (min-width: 900px) {
+  .hero-visual { min-height: 480px; }
+}
+.hero-character {
+  position: relative;
+  width: min(420px, 85%);
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.25));
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hero-character img { width: 100%; height: auto; display: block; }
+
+/* Floating speech bubble */
+.bubble {
+  position: absolute;
+  background: #fff;
+  color: var(--c205-ink);
+  border-radius: 22px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  white-space: nowrap;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  width: 14px; height: 14px;
+  background: #fff;
+  bottom: -6px;
+  transform: rotate(45deg);
+}
+.bubble.b1 {
+  top: 12%;
+  left: -4%;
+  background: var(--c205-pink-soft);
+  border: 1px solid rgba(255,157,190,0.40);
+  font-family: var(--font-hand);
+  font-size: 17px;
+  color: #6d2a4c;
+  animation: bob 4s ease-in-out infinite;
+}
+.bubble.b1::after { background: var(--c205-pink-soft); border-right: 1px solid rgba(255,157,190,0.40); border-bottom: 1px solid rgba(255,157,190,0.40); left: 22px; }
+.bubble.b2 {
+  top: 38%;
+  right: -8%;
+  background: #fff;
+  animation: bob 4s ease-in-out infinite 1.5s;
+}
+.bubble.b2::after { right: 22px; bottom: -7px; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(1deg); }
+}
+
+@media (max-width: 720px) {
+  .bubble.b1 { left: 0; top: 0; }
+  .bubble.b2 { right: 0; top: 30%; }
+}
+
+/* ============================================================
+   Section common
+   ============================================================ */
+.section { padding: 72px 0; }
+@media (min-width: 900px) { .section { padding: 96px 0; } }
+.section-head { margin-bottom: 40px; max-width: 720px; }
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-hand);
+  font-size: var(--fs-16);
+  color: var(--c205-mint-deep);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+.section-sub {
+  color: var(--fg-2);
+  font-size: var(--fs-18);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   Channels (3.3) — VS layout
+   ============================================================ */
+.channels { background: var(--bg-2); }
+.channels-vs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch;
+  position: relative;
+}
+@media (min-width: 900px) {
+  .channels-vs {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+  }
+}
+
+.channel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition: transform var(--dur-medium) var(--ease-pop), box-shadow var(--dur-medium) var(--ease-standard);
+}
+.channel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
+}
+.channel-card.kakao { border-top: 6px solid #FFD43B; }
+.channel-card.band  { border-top: 6px solid var(--c205-mint); }
+
+.channel-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-semibold);
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.channel-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+.channel-icon.kakao { background: #FEE500; color: #3C1E1E; }
+.channel-icon.band  { background: var(--c205-mint-soft); color: var(--c205-mint-deep); }
+
+.channel-card h3 {
+  font-size: var(--fs-28);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+.channel-card p { color: var(--fg-2); font-size: var(--fs-16); }
+.channel-card p strong { color: var(--c205-ink); font-weight: var(--fw-bold); background: var(--c205-pink-soft); padding: 0 4px; border-radius: 4px; }
+
+.channel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-medium);
+  background: var(--bg-3);
+  color: var(--fg-2);
+}
+.tag.mint { background: var(--c205-mint-soft); color: var(--c205-mint-press); }
+.tag.pink { background: var(--c205-pink-soft); color: var(--c205-pink-press); }
+.tag.kakao { background: #FFF8DA; color: #6d5612; }
+
+/* Copy field */
+.copy-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  margin-top: auto;
+}
+.copy-input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-13);
+  padding: 10px 12px;
+  border: 1px solid var(--border-1);
+  background: var(--bg-2);
+  border-radius: var(--radius-md);
+  color: var(--fg-2);
+}
+.copy-input:focus { outline: none; border-color: var(--c205-mint); box-shadow: 0 0 0 3px rgba(93,211,200,0.18); }
+.copy-btn {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.copy-btn:hover { background: var(--bg-3); }
+.copy-btn.copied { background: var(--color-success-soft); color: var(--color-success); border-color: var(--color-success); }
+
+.channel-go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-15);
+  text-decoration: none;
+  transition: all var(--dur-fast) var(--ease-standard);
+  margin-top: 8px;
+}
+.channel-go.kakao { background: #FEE500; color: #3C1E1E; }
+.channel-go.kakao:hover { background: #FFEC34; transform: translateY(-1px); color: #3C1E1E; text-decoration: none; }
+.channel-go.band  { background: var(--c205-mint); color: #0d3a37; }
+.channel-go.band:hover { background: var(--c205-mint-hover); transform: translateY(-1px); color: #0d3a37; text-decoration: none; }
+
+/* VS divider */
+.vs-divider {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.vs-circle {
+  width: 64px; height: 64px;
+  border-radius: 999px;
+  background: var(--c205-bg-mood);
+  color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 0 8px var(--bg-2), 0 12px 24px rgba(110,115,120,0.30);
+  z-index: 1;
+}
+@media (max-width: 899px) {
+  .vs-divider { padding: 8px 0; }
+  .vs-circle { width: 52px; height: 52px; font-size: 18px; box-shadow: 0 0 0 6px var(--bg-2), 0 8px 16px rgba(110,115,120,0.20); }
+}
+
+/* Note */
+.channel-note {
+  margin-top: 32px;
+  background: var(--c205-pink-soft);
+  border: 1px solid rgba(255,157,190,0.40);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.channel-note .note-mark {
+  flex: 0 0 auto;
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--c205-pink);
+  color: #fff;
+  display: grid; place-items: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.channel-note p {
+  margin: 0;
+  color: #5a2742;
+  font-size: var(--fs-15);
+  line-height: 1.6;
+}
+.channel-note p em { font-style: normal; font-weight: var(--fw-bold); color: #3a1227; background: #fff; padding: 0 5px; border-radius: 4px; }
+
+/* ============================================================
+   Checklist (3.4) — Connected dots timeline
+   ============================================================ */
+.checklist { background: var(--bg-1); }
+.checklist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.checklist-list::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--c205-mint) 0%, var(--c205-pink) 100%);
+  border-radius: 2px;
+}
+@media (min-width: 720px) {
+  .checklist-list::before { left: 27px; }
+}
+.checklist-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+}
+@media (min-width: 720px) {
+  .checklist-item { grid-template-columns: 64px 1fr; gap: 24px; padding: 22px 0; }
+}
+.checklist-num {
+  position: relative;
+  z-index: 1;
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background: var(--bg-1);
+  border: 2px solid var(--c205-mint);
+  color: var(--c205-mint-deep);
+  display: grid; place-items: center;
+  font-family: var(--font-point);
+  font-weight: 700;
+  font-size: 20px;
+  box-shadow: 0 0 0 6px var(--bg-1);
+}
+.checklist-item:nth-child(2) .checklist-num { border-color: #6CC9C2; color: #2A8881; }
+.checklist-item:nth-child(3) .checklist-num { border-color: #B6B2C8; color: #6E5AE6; }
+.checklist-item:nth-child(4) .checklist-num { border-color: #FFB7CC; color: var(--c205-pink-press); }
+.checklist-item:nth-child(5) .checklist-num { border-color: var(--c205-pink); color: var(--c205-pink-press); background: var(--c205-pink-soft); }
+
+.checklist-body h3 {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  margin: 6px 0 6px;
+  letter-spacing: -0.01em;
+}
+.checklist-body p { color: var(--fg-2); font-size: var(--fs-15); line-height: 1.65; }
+
+/* ============================================================
+   FAQ (3.5)
+   ============================================================ */
+.faq { background: var(--bg-2); }
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 820px;
+}
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard);
+}
+.faq-item[open] { box-shadow: var(--shadow-2); border-color: var(--c205-mint-tint); }
+.faq-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-16);
+  color: var(--fg-1);
+}
+.faq-summary::-webkit-details-marker { display: none; }
+.faq-summary .q-mark {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  color: var(--c205-pink);
+  font-size: 22px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.faq-summary .q-text { flex: 1; }
+.faq-toggle {
+  flex: 0 0 auto;
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  background: var(--bg-3);
+  display: grid; place-items: center;
+  transition: transform var(--dur-base) var(--ease-pop), background var(--dur-base) var(--ease-standard);
+}
+.faq-item[open] .faq-toggle { transform: rotate(45deg); background: var(--c205-mint-soft); color: var(--c205-mint-deep); }
+.faq-toggle::before { content: "+"; font-size: 18px; line-height: 1; font-weight: 700; }
+
+.faq-body {
+  padding: 0 22px 22px 56px;
+  color: var(--fg-2);
+  font-size: var(--fs-15);
+  line-height: 1.7;
+}
+.faq-body code { font-size: 0.9em; }
+
+/* ============================================================
+   Screenshot guide (3.6)
+   ============================================================ */
+.screenshot { background: var(--bg-1); }
+.os-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 720px) { .os-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
+
+.os-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  transition: transform var(--dur-medium) var(--ease-pop), box-shadow var(--dur-medium) var(--ease-standard);
+}
+.os-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); }
+.os-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.os-glyph {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-md);
+  display: grid; place-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.os-glyph.win { background: linear-gradient(135deg, #5096F5 0%, #6E5AE6 100%); }
+.os-glyph.mac { background: linear-gradient(135deg, #34363B 0%, #6E7378 100%); }
+.os-card h3 { font-size: var(--fs-22, 22px); font-weight: var(--fw-bold); }
+.os-card p { color: var(--fg-2); font-size: var(--fs-15); line-height: 1.7; }
+
+kbd {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 4px 10px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-2);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  color: var(--fg-1);
+  font-weight: 700;
+  margin: 0 2px;
+  white-space: nowrap;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+
+.os-end {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-hand);
+  font-size: 16px;
+  color: var(--c205-mint-deep);
+}
+
+/* ============================================================
+   Community (3.7)
+   ============================================================ */
+.community {
+  background:
+    radial-gradient(80% 80% at 50% 0%, rgba(255,157,190,0.12) 0%, transparent 60%),
+    var(--c205-bg-mood);
+  color: #fff;
+}
+.community .section-title { color: #fff; }
+.community .section-eyebrow { color: var(--c205-pink); }
+.community .section-sub { color: rgba(255,255,255,0.80); }
+
+.community-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+@media (min-width: 720px) { .community-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+
+.com-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  backdrop-filter: blur(8px);
+  transition: transform var(--dur-medium) var(--ease-pop), background var(--dur-medium) var(--ease-standard);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.com-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.10); }
+.com-head { display: flex; align-items: center; gap: 12px; }
+.com-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-md);
+  display: grid; place-items: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+.com-icon.discord { background: #5865F2; color: #fff; }
+.com-icon.kakao { background: #FEE500; color: #3C1E1E; }
+.com-card h3 { font-size: var(--fs-22, 22px); font-weight: var(--fw-bold); color: #fff; }
+.com-card p { color: rgba(255,255,255,0.78); font-size: var(--fs-15); }
+.com-copy-input {
+  background: rgba(0,0,0,0.20);
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.18);
+}
+.com-copy-input:focus { border-color: var(--c205-pink); box-shadow: 0 0 0 3px rgba(255,157,190,0.30); }
+.com-card .copy-btn {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  border-color: rgba(255,255,255,0.20);
+}
+.com-card .copy-btn:hover { background: rgba(255,255,255,0.18); }
+.com-card .copy-btn.copied { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+
+.com-go {
+  margin-top: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-15);
+  text-decoration: none;
+  transition: all var(--dur-fast) var(--ease-standard);
+}
+.com-go.discord { background: #5865F2; color: #fff; }
+.com-go.discord:hover { background: #4752C4; color: #fff; transform: translateY(-1px); text-decoration: none; }
+.com-go.kakao { background: #FEE500; color: #3C1E1E; }
+.com-go.kakao:hover { background: #FFEC34; color: #3C1E1E; transform: translateY(-1px); text-decoration: none; }
+
+/* ============================================================
+   Sponsor (3.8)
+   ============================================================ */
+.sponsor { background: var(--bg-1); padding: 48px 0; }
+.sponsor-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.sponsor-label {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: var(--fw-semibold);
+}
+.sponsor-frame {
+  width: 100%;
+  max-width: 528px;
+  background: #fff;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-shadow: var(--shadow-1);
+}
+.sponsor-placeholder {
+  height: 60px;
+  background: repeating-linear-gradient(45deg, var(--bg-3) 0 8px, var(--bg-2) 8px 16px);
+  border-radius: var(--radius-sm);
+  display: grid; place-items: center;
+  color: var(--fg-3);
+  font-size: var(--fs-13);
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   Footer (3.9)
+   ============================================================ */
+.site-footer {
+  background: #1d1f22;
+  color: rgba(255,255,255,0.75);
+  padding: 56px 0 80px;
+  font-size: var(--fs-14);
+}
+@media (min-width: 900px) { .site-footer { padding: 64px 0 56px; } }
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 720px) {
+  .footer-grid { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 32px; }
+}
+.footer-brand {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-15);
+}
+.footer-brand .brand-mark { box-shadow: none; }
+.footer-meta { color: rgba(255,255,255,0.55); margin-top: 6px; font-size: var(--fs-13); }
+.footer-tm {
+  max-width: 460px;
+  font-size: var(--fs-12);
+  line-height: 1.6;
+  color: rgba(255,255,255,0.50);
+}
+.footer-tm strong { color: rgba(255,255,255,0.75); font-weight: var(--fw-semibold); }
+
+/* ============================================================
+   Mobile dock (3.10)
+   ============================================================ */
+.mobile-dock {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-top: 1px solid var(--border-1);
+  padding: 10px max(16px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.mobile-dock a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-15);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+}
+.mobile-dock a.kakao { background: #FEE500; color: #3C1E1E; }
+.mobile-dock a.band  { background: var(--c205-mint); color: #0d3a37; }
+@media (min-width: 900px) { .mobile-dock { display: none; } }
+
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--c205-ink);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-medium);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms, transform 200ms;
+  z-index: 100;
+  box-shadow: var(--shadow-3);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (min-width: 900px) { .toast { bottom: 32px; } }
+
+</style>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">본문 바로가기</a>
+
+<!-- ===== Header ===== -->
+<header class="site-header" role="banner">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="엔트리 질문 채널 안내 — 홈">
+      <span class="brand-mark" aria-hidden="true">205</span>
+      <span class="brand-name">엔트리 질문 채널<span class="sub">· help.205.kr</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="페이지 내 이동">
+      <a href="#community">커뮤니티</a>
+      <a href="#screenshot">캡처 방법</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="카카오톡 오픈채팅으로 질문하기">
+      <span aria-hidden="true">💬</span><span class="full">바로 질문</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-eyebrow reveal" style="--i:0"><span class="dot">!</span> 엔트리 코딩 도와주는 곳</span>
+          <h1 id="hero-title" class="hero-title reveal" style="--i:1">
+            엔트리 질문,<br/>
+            <span class="accent">여기서 물어봐요</span>
+          </h1>
+          <p class="hero-sub reveal" style="--i:2">
+            엔트리 질문을 더 빨리, 더 쉽게! <strong>간단한 질문은 카톡</strong>,
+            <strong>자세한 질문은 밴드 글</strong>로 남겨 주세요.
+            아래 체크리스트를 보고 올리면 답이 더 빨리 와요.
+          </p>
+
+          <div class="hero-ctas reveal" style="--i:3">
+            <a class="btn btn-primary" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">💬</span> 카카오톡 오픈채팅
+            </a>
+            <a class="btn btn-secondary" href="https://band.us/@entryband" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">📝</span> 엔트리 밴드 게시글로 질문
+            </a>
+          </div>
+
+          <span class="hero-tip reveal" style="--i:4" aria-hidden="true">
+            <span>✨</span> 댓글 말고 게시글이에요!
+          </span>
+        </div>
+
+        <div class="hero-visual reveal r-pop" style="--i:2" aria-hidden="true">
+          <div class="hero-character">
+            <div class="bubble b1">막혔을 땐 같이 풀어요</div>
+            <div class="bubble b2">스샷 한 장이면 돼요!</div>
+            <img src="assets/205-arms.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Channels ===== -->
+  <section class="section channels" id="channels" aria-labelledby="channels-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">어디에 물어볼까?</div>
+        <h2 class="section-title" id="channels-title">질문은 두 곳에서 받아요</h2>
+        <p class="section-sub">간단한 건 빠르게 카톡으로, 코드까지 자세히 봐야 하는 건 밴드 게시글로 남겨 주세요.</p>
+      </div>
+
+      <div class="channels-vs">
+
+        <article class="channel-card kakao reveal r-left" style="--i:1">
+          <div class="channel-eyebrow">FOR · 빠른 질문</div>
+          <div class="channel-icon kakao" aria-hidden="true">💬</div>
+          <h3>카카오톡 오픈채팅방</h3>
+          <p>간단한 질문은 카카오톡으로 주시면 <strong>빠르게</strong> 답변드립니다.</p>
+          <div class="channel-tags">
+            <span class="tag kakao">한두 줄 질문</span>
+            <span class="tag kakao">실시간 채팅</span>
+            <span class="tag kakao">로그인 없이</span>
+          </div>
+          <div class="copy-row">
+            <input class="copy-input" type="text" readonly value="https://open.kakao.com/o/gHwo5vlc" aria-label="카카오톡 오픈채팅 주소" />
+            <button class="copy-btn" type="button" data-copy="https://open.kakao.com/o/gHwo5vlc">복사</button>
+          </div>
+          <a class="channel-go kakao" href="https://open.kakao.com/o/gHwo5vlc" target="_blank" rel="noopener noreferrer">
+            바로 가기 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <div class="vs-divider reveal r-pop" style="--i:2" aria-hidden="true">
+          <div class="vs-circle">VS</div>
+        </div>
+
+        <article class="channel-card band reveal r-right" style="--i:3">
+          <div class="channel-eyebrow">FOR · 자세한 질문</div>
+          <div class="channel-icon band" aria-hidden="true">📝</div>
+          <h3>엔트리 밴드</h3>
+          <p>복잡한 질문은 밴드에 올려 주시면 자세한 답변이 편합니다. <strong>댓글이 아닌 '게시글'</strong>로 질문을 작성해 주세요.</p>
+          <div class="channel-tags">
+            <span class="tag mint">코드 첨부</span>
+            <span class="tag mint">스크린샷</span>
+            <span class="tag mint">긴 설명</span>
+          </div>
+          <div class="copy-row">
+            <input class="copy-input" type="text" readonly value="https://band.us/@entryband" aria-label="엔트리 밴드 주소" />
+            <button class="copy-btn" type="button" data-copy="https://band.us/@entryband">복사</button>
+          </div>
+          <a class="channel-go band" href="https://band.us/@entryband" target="_blank" rel="noopener noreferrer">
+            바로 가기 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+
+      <div class="channel-note reveal" role="note">
+        <div class="note-mark" aria-hidden="true">!</div>
+        <p>
+          <strong>안내:</strong> 밴드에서는 <em>댓글</em>이 아닌 <em>게시글</em>로 질문을 올려 주세요.
+          캡처 이미지는 텍스트가 선명한 <strong>화면 캡처</strong>로 첨부하면 검토가 훨씬 빨라져요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Checklist ===== -->
+  <section class="section checklist" id="checklist" aria-labelledby="checklist-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">답이 빨라지는 5단계</div>
+        <h2 class="section-title" id="checklist-title">질문 전 꼭 읽어주세요</h2>
+        <p class="section-sub">아래 다섯 가지만 챙기면, 같은 질문을 두 번 안 해도 돼요.</p>
+      </div>
+
+      <ol class="checklist-list reveal r-fade">
+        <li class="checklist-item reveal" style="--i:0">
+          <div class="checklist-num" aria-hidden="true">1</div>
+          <div class="checklist-body">
+            <h3>코드를 함께 올려 주세요.</h3>
+            <p>캡처한 이미지나 엔트리 작품 링크가 좋아요. 사진으로 찍은 화면보다 화면 캡처가 더 또렷해요.</p>
+          </div>
+        </li>
+        <li class="checklist-item reveal" style="--i:1">
+          <div class="checklist-num" aria-hidden="true">2</div>
+          <div class="checklist-body">
+            <h3>무엇을 만들고 싶었는지 적어 주세요.</h3>
+            <p>기대한 동작을 한 줄로 써 보아요. 참고한 영상/글이 있다면 링크도 함께요.</p>
+          </div>
+        </li>
+        <li class="checklist-item reveal" style="--i:2">
+          <div class="checklist-num" aria-hidden="true">3</div>
+          <div class="checklist-body">
+            <h3>이미 해 본 방법을 알려 주세요.</h3>
+            <p>시도한 것과 결과를 적어 주면, 같은 방법을 다시 안내하지 않게 도와줘요.</p>
+          </div>
+        </li>
+        <li class="checklist-item reveal" style="--i:3">
+          <div class="checklist-num" aria-hidden="true">4</div>
+          <div class="checklist-body">
+            <h3>오류가 언제, 어디서 생겼는지 알려 주세요.</h3>
+            <p>어떤 화면/오브젝트에서 문제가 생겼는지 쓰고, 스크린샷(또는 짧은 영상)을 올려 주세요.</p>
+          </div>
+        </li>
+        <li class="checklist-item reveal" style="--i:4">
+          <div class="checklist-num" aria-hidden="true">5</div>
+          <div class="checklist-body">
+            <h3>해결되면 한마디만!</h3>
+            <p>먼저 해결됐다면 알려 주세요. 어떻게 해결했는지 남기면 다음 친구들에게 큰 도움이 돼요.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">자주 묻는 질문</div>
+        <h2 class="section-title" id="faq-title">FAQ</h2>
+        <p class="section-sub">제목을 누르면 답변이 펼쳐져요.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item reveal" style="--i:0">
+          <summary class="faq-summary">
+            <span class="q-mark" aria-hidden="true">Q.</span>
+            <span class="q-text">코드 캡처는 어떻게 하나요?</span>
+            <span class="faq-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            <strong>PNG</strong>를 추천해요. 코드 부분만 크게 보이게 캡처해 주세요.
+            사진으로 찍은 화면은 빛 반사·흔들림 때문에 글자가 잘 안 보여요.
+          </div>
+        </details>
+
+        <details class="faq-item reveal" style="--i:1">
+          <summary class="faq-summary">
+            <span class="q-mark" aria-hidden="true">Q.</span>
+            <span class="q-text">밴드에 글을 쓸 때 예시가 있나요?</span>
+            <span class="faq-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            <p style="margin-bottom:8px"><strong>[제목]</strong> 문제 한 줄 요약</p>
+            <p><strong>[본문]</strong></p>
+            <ul style="margin: 6px 0 0 20px; padding: 0; color: var(--fg-2);">
+              <li>① 의도</li>
+              <li>② 현재 상황</li>
+              <li>③ 해 본 것</li>
+              <li>④ 스샷/영상</li>
+              <li>⑤ 엔트리 링크</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item reveal" style="--i:2">
+          <summary class="faq-summary">
+            <span class="q-mark" aria-hidden="true">Q.</span>
+            <span class="q-text">카톡이 좋을까요, 밴드가 좋을까요?</span>
+            <span class="faq-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            작은 질문은 <strong>카톡</strong>, 자세한 문제·버그는 <strong>밴드 글</strong>을 추천해요.
+            글로 정리해야 답변자도 코드를 정확히 볼 수 있어요.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Screenshot guide ===== -->
+  <section class="section screenshot" id="screenshot" aria-labelledby="screenshot-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">또렷한 화면 한 장</div>
+        <h2 class="section-title" id="screenshot-title">코드 캡처, 이렇게 해요</h2>
+        <p class="section-sub">단축키 한 번이면 화면을 또렷하게 저장할 수 있어요.</p>
+      </div>
+
+      <div class="os-grid">
+        <article class="os-card reveal r-left" style="--i:0">
+          <div class="os-head">
+            <div class="os-glyph win" aria-hidden="true">⊞</div>
+            <h3>Windows</h3>
+          </div>
+          <p>
+            <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> 를 누른 뒤,
+            캡처하고 싶은 영역만 드래그해요. 클립보드에 저장되니
+            그림판/포토 앱에서 붙여넣기 후 <strong>PNG</strong>로 저장하면 끝!
+          </p>
+          <div class="os-end">✏️ 코드만 크게 잘라 주세요</div>
+        </article>
+
+        <article class="os-card reveal r-right" style="--i:1">
+          <div class="os-head">
+            <div class="os-glyph mac" aria-hidden="true">⌘</div>
+            <h3>macOS</h3>
+          </div>
+          <p>
+            <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> 를 누르고,
+            원하는 영역만 드래그해요. 자동으로 바탕화면에 저장돼요.
+            필요하면 파일 이름만 바꿔서 올리면 돼요.
+          </p>
+          <div class="os-end">✏️ 사진 말고 캡처가 좋아요</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Community ===== -->
+  <section class="section community" id="community" aria-labelledby="community-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">잡담 커뮤니티</div>
+        <h2 class="section-title" id="community-title">수다 떨고, 작품 자랑하고, 친구 만들어요</h2>
+        <p class="section-sub">질문 말고 가볍게 이야기 나누고 싶을 땐 여기로 오세요.</p>
+      </div>
+
+      <div class="community-grid">
+        <article class="com-card reveal r-pop" style="--i:0">
+          <div class="com-head">
+            <div class="com-icon discord" aria-hidden="true">D</div>
+            <h3>디스코드</h3>
+          </div>
+          <p>실시간 음성·채팅으로 친구들과 더 가깝게.</p>
+          <div class="copy-row">
+            <input class="copy-input com-copy-input" type="text" readonly value="https://discord.gg/PUFCz9Ykba" aria-label="디스코드 초대 주소" />
+            <button class="copy-btn" type="button" data-copy="https://discord.gg/PUFCz9Ykba">복사</button>
+          </div>
+          <a class="com-go discord" href="https://discord.gg/PUFCz9Ykba" target="_blank" rel="noopener noreferrer">
+            디스코드 참여 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="com-card reveal r-pop" style="--i:1">
+          <div class="com-head">
+            <div class="com-icon kakao" aria-hidden="true">💛</div>
+            <h3>카카오톡 잡담방</h3>
+          </div>
+          <p>가볍게 작품 자랑, 일상 이야기까지.</p>
+          <div class="copy-row">
+            <input class="copy-input com-copy-input" type="text" readonly value="https://open.kakao.com/o/gqHqTTuc" aria-label="카카오톡 잡담방 주소" />
+            <button class="copy-btn" type="button" data-copy="https://open.kakao.com/o/gqHqTTuc">복사</button>
+          </div>
+          <a class="com-go kakao" href="https://open.kakao.com/o/gqHqTTuc" target="_blank" rel="noopener noreferrer">
+            카톡 잡담방 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Sponsor ===== -->
+  <section class="sponsor" aria-label="스폰서">
+    <div class="container sponsor-wrap">
+      <div class="sponsor-label">Sponsored</div>
+      <div class="sponsor-frame">
+        <div class="sponsor-placeholder" aria-hidden="true">
+          468 × 60 광고 영역 (LinkPrice)
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">205</span>
+        <span>엔트리 질문 채널 안내</span>
+      </div>
+      <div class="footer-meta">
+        © 205와 엔트리 · 마지막 업데이트
+        <time datetime="2025-09-19">2025-09-19</time>
+      </div>
+    </div>
+    <p class="footer-tm">
+      <strong>205®</strong>는 대한민국 특허청에 정식 등록된 상표입니다
+      (등록번호: 제4023349250000호 / 등록일: 2025년 3월 24일).
+    </p>
+  </div>
+</footer>
+
+<!-- ===== Mobile dock ===== -->
+<nav class="mobile-dock" aria-label="빠른 실행">
+  <a href="https://open.kakao.com/o/gHwo5vlc" class="kakao" target="_blank" rel="noopener noreferrer">
+    <span aria-hidden="true">💬</span> 카카오톡
+  </a>
+  <a href="https://band.us/@entryband" class="band" target="_blank" rel="noopener noreferrer">
+    <span aria-hidden="true">📝</span> 밴드 질문
+  </a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite">복사했어요!</div>
+
+<script>
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        // Fallback
+        const input = btn.previousElementSibling;
+        if (input && input.select) { input.select(); document.execCommand('copy'); }
+      }
+      const original = btn.textContent;
+      btn.textContent = '복사됨 ✓';
+      btn.classList.add('copied');
+      const toast = document.getElementById('toast');
+      toast.textContent = '주소를 복사했어요!';
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 1600);
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1800);
+    });
+  });
+
+  // Click input → select all
+  document.querySelectorAll('.copy-input').forEach((inp) => {
+    inp.addEventListener('focus', () => inp.select());
+    inp.addEventListener('click', () => inp.select());
+  });
+
+  // ===== Scroll reveal =====
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Checklist line: animate gradient draw when list enters
+    const list = document.querySelector('.checklist-list');
+    if (list) {
+      const lio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { list.classList.add('in'); lio.disconnect(); }
+        });
+      }, { threshold: 0.2 });
+      lio.observe(list);
+    }
+
+    // Hero character: gentle scroll parallax + start float once visible
+    const character = document.querySelector('.hero-character');
+    if (character) {
+      // Start floating animation after first paint
+      requestAnimationFrame(() => character.classList.add('float-on'));
+
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          // Translate up to ~24px as user scrolls past hero
+          const py = Math.max(-24, Math.min(24, -y * 0.08));
+          character.style.setProperty('--py', py + 'px');
+          ticking = false;
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  } else {
+    // Reduced motion: just show everything
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+    const list = document.querySelector('.checklist-list');
+    if (list) list.classList.add('in');
+  }
+</script>
+
+</body>
+</html>
